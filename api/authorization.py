@@ -1,5 +1,5 @@
 import bcrypt
-from flask import blueprints, jsonify
+from flask import Blueprint, jsonify
 from werkzeug.exceptions import BadRequest, Conflict
 
 from api.models.user import User
@@ -7,7 +7,7 @@ from settings.serialize import serialize
 from settings.settings import SALT
 from settings.utils import api
 
-app = blueprints('authorization', __name__, url_prefix='/api/authorization')
+app = Blueprint('authorization', __name__, url_prefix='/api/authorization')
 
 
 def encoder(pw):
