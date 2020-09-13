@@ -11,7 +11,7 @@ app = Blueprint('authorization', __name__, url_prefix='/api/authorization')
 
 
 def encoder(pw):
-    password_hash = bcrypt.hashpw(pw.encode(), SALT)  # hash 암호화
+    password_hash = bcrypt.hashpw(pw.encode(), SALT).decode()  # hash 암호화
     return password_hash
 
 
