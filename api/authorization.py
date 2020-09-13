@@ -7,7 +7,7 @@ from settings.serialize import serialize
 from settings.settings import SALT
 from settings.utils import api
 
-app = blueprints('authorization', __name__, url_prefix='/api')
+app = blueprints('authorization', __name__, url_prefix='/api/authorization')
 
 
 def encoder(pw):
