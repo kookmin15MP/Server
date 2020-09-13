@@ -44,3 +44,6 @@ get, post, put, delete: 삽입한 데이터 확인하고 싶을 때 사용
     자유: 자유
 }
 ```
+
+## API manual URL
+``https://github.com/kookmin15MP/Server/tree/master/api``
