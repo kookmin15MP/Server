@@ -1,5 +1,7 @@
 from typequery import GenericMethod
 
+from api.models.user import User
+
 serialize = GenericMethod('serialize')
 
 
@@ -10,3 +12,12 @@ serialize = GenericMethod('serialize')
 @serialize.of(str)
 def serialize(value, **kwargs):
     return value
+
+
+@serialize.of(User)
+def serialize(user, **kwargs):
+    result = {
+        'id': user.id,
+        'email': user.email,
+    }
+    return result
