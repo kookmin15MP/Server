@@ -1,7 +1,7 @@
 # API manual
 
 ### authorization
-[GET] /api/authorization/signup
+[GET] /api/authorization/signup  
 회원가입 도중에 이메일 중복 확인
 
 요청
@@ -22,7 +22,7 @@
 409 이미 존재하는 이메일
 ```
 
-[POST] /api/authorization/signup
+[POST] /api/authorization/signup  
 회원가입 처리
 
 요청
@@ -44,7 +44,7 @@
 400 요청 형식 맞지 않음
 ```
 
-[POST] /api/authorization/login
+[POST] /api/authorization/login  
 로그인 처리
 
 요청
