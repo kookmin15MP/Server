@@ -1,7 +1,8 @@
 from pytest import fixture
 from sqlalchemy import create_engine
 
-from db import Base
+from api.models.user import User
+from db import Base, Database
 from settings.settings import DB_URI, NAME, PASSWOLRD, DB_PORT, HOST_ADDR
 from settings.wsgi import create_wsgi
 
@@ -31,3 +32,13 @@ def database():  # pytest용 일회용 데이터베이스
 def init_database(database):
     engine = create_engine(DB_URI, connect_args={'connect_timeout': 10})
     Base.metadata.create_all(engine)
+
+
+@fixture()
+def user(client):
+    with Database() as db:
+        new_uew = User(email='user@user.user',
+                       pw='user123!@#', )
+        db.add(new_uew)
+        db.commit()
+    return user
