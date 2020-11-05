@@ -5,7 +5,7 @@ sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
 # define
 HOST_ADDR = '127.0.0.1'  # localhost address
-SERVER_PORT = 8000  # 서버 포트
+SERVER_PORT = 8100  # 서버 포트
 DEBUG = False  # 디버그모드
 MODE = os.environ.get('MODE')
 
