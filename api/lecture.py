@@ -11,7 +11,7 @@ app = Blueprint('teach', __name__, url_prefix='/api/lecture')
 @app.route('/info', methods=['POST'])
 @api
 def post_lecture_info(data, db):  # 수업 생성
-    req_list = ['lecture_name', 'professor_name', 'lecture_time']
+    req_list = ['lecture_name', 'professor_name', 'lecture_time', 'limited_people']
 
     for i in req_list:  # 필수 요소 검사
         if i not in data:
@@ -19,7 +19,8 @@ def post_lecture_info(data, db):  # 수업 생성
 
     new_lecture = Lecture(lecture_name=data['lecture_name'],
                           professor_name=data['professor_name'],
-                          lecture_time=data['lecture_time'], )
+                          lecture_time=data['lecture_time'],
+                          limited_people=data['limited_people'])
     db.add(new_lecture)
     db.commit()
 
