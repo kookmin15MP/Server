@@ -8,6 +8,8 @@ from settings.wsgi import create_wsgi
 
 app = create_wsgi()
 
+ID_NUM = 1234
+
 
 @fixture()
 def client(init_database):  # pytest용 클라이언트
@@ -36,9 +38,13 @@ def init_database(database):
 
 @fixture()
 def user(client):
+    global ID_NUM
+    ID_NUM = ID_NUM + 1
     with Database() as db:
-        new_uew = User(email='user@user.user',
-                       pw='user123!@#', )
-        db.add(new_uew)
+        new_user = User(email=f'user{ID_NUM}@user.user',
+                        pw='user123!@#', )
+        db.add(new_user)
         db.commit()
-    return user
+        db.refresh(new_user)
+        db.expunge(new_user)
+    return new_user

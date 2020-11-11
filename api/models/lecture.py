@@ -20,3 +20,11 @@ class Basket(Base):
     user_id = Column(Integer, ForeignKey('user.id'))  # 유저 아이디
     lecture_id = Column(Integer, ForeignKey('lecture.id'))  # 강의 아이디
     is_valid = Column(Boolean, nullable=False, unique=False, default=True)  # 수강신청 성공이나 삭제시 무효화
+
+
+class Registration(Base):
+    __tablename__ = 'registration'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = Column(Integer, ForeignKey('user.id'))  # 유저 아이디
+    lecture_id = Column(Integer, ForeignKey('lecture.id'))  # 강의 아이디
