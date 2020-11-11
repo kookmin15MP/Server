@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from werkzeug.exceptions import BadRequest
+from werkzeug.exceptions import BadRequest, NotFound
 
 from api.models.lecture import Lecture, Basket, Registration
 from settings.serialize import serialize
@@ -64,13 +64,15 @@ def get_lecture_basket(data, db):  # 장바구니 불러오기
             raise BadRequest
 
     baskets = db.query(Basket).filter(Basket.user_id == data['user_id'],
-                                      Basket.is_valid is True, ).all()
+                                      Basket.is_valid.is_(True), ).all()
+    if not baskets:
+        raise NotFound
     return jsonify(serialize(baskets))
 
 
-@app.route('/basket', methods=['PUT'])
+@app.route('/basket', methods=['DELETE'])
 @api
-def put_lecture_basket(data, db):  # 장바구니에서 무효화
+def delete_lecture_basket(data, db):  # 장바구니에서 무효화
     req_list = ['basket_id']
 
     for i in req_list:  # 필수 요소 검사
@@ -96,11 +98,13 @@ def post_registration(data, db):  # 수강신청
     new_registration = Registration(user_id=data['user_id'],
                                     lecture_id=data['lecture_id'], )
     db.add(new_registration)
+    db.commit()
 
     basket = db.query(Basket).filter(Basket.user_id == data['user_id'],
                                      Basket.lecture_id == data['lecture_id'], ).first()
-    basket.delete()
-    db.commit()
+    if basket:  # 장바구니에 존재시
+        basket.is_valid = False
+        db.commit()
 
     return jsonify(serialize(new_registration))
 
@@ -115,5 +119,8 @@ def get_registration(data, db):  # 내가 수강신청한 목록 불러오기 ( 
             raise BadRequest
 
     registrations = db.query(Registration).filter(Registration.user_id == data['user_id']).all()
+
+    if not registrations:
+        raise NotFound
 
     return jsonify(serialize(registrations))
