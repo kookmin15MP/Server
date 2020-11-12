@@ -1,3 +1,8 @@
+"""
+Mobile Programing Team Project
+수강신청 App Server Side
+코드 작성자 20153159 김연수
+"""
 from flask import Flask
 from flask_cors import CORS
 from werkzeug.exceptions import *

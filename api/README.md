@@ -1,5 +1,9 @@
 # API manual
-
+```
+Mobile Programing Team Project
+수강신청 App Server Side
+코드 작성자 20153159 김연수
+```
 ### authorization
 [GET] /api/authorization/signup  
 회원가입 도중에 이메일 중복 확인

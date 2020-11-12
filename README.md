@@ -1,4 +1,9 @@
 # flask를 이용한 REST API서버  
+```
+Mobile Programing Team Project
+수강신청 App Server Side
+코드 작성자 20153159 김연수
+```
 ## 필요 패키지  
 DB : PostgreSQL  
 reference link - https://github.com/snowplow/snowplow/wiki/Setting-up-PostgreSQL
