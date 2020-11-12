@@ -1,6 +1,11 @@
+"""
+Mobile Programing Team Project
+수강신청 App Server Side
+코드 작성자 20153159 김연수
+"""
 from typequery import GenericMethod
 
-from api.models.lecture import Lecture, Basket
+from api.models.lecture import Lecture, Basket, Registration
 from api.models.user import User
 
 serialize = GenericMethod('serialize')
@@ -55,5 +60,15 @@ def serialize(basket, **kwargs):
         'basket_id': basket.id,
         'user_id': basket.user_id,
         'lecture_id': basket.lecture_id,
+    }
+    return result
+
+
+@serialize.of(Registration)
+def serialize(registration, **kwargs):
+    result = {
+        'registration_id': registration.id,
+        'user_id': registration.user_id,
+        'lecture_id': registration.lecture_id,
     }
     return result
