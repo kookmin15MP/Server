@@ -5,6 +5,8 @@ Mobile Programing Team Project
 코드 작성자 20153159 김연수
 
 서버주소 : http://3.34.158.76:8100/
+
+코드는 api폴더안의 파일들과 api/README.md 파일 확인해주시면 됩니다
 ```
 ## 필요 패키지  
 DB : PostgreSQL  
